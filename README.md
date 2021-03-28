@@ -8,5 +8,5 @@
 1. [Минниханова Диляра](https://github.com/MinnDi)
 2. [Лигай Алексей](https://github.com/aligai27)
 3. [Недошивина Мария](https://github.com/maria2408)
-4. [Мунтян Евгений]()
+4. [Мунтян Евгений](https://github.com/EugeneMoon22)
 
