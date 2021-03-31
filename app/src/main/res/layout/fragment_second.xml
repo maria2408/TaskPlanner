@@ -6,22 +6,134 @@
     android:layout_height="match_parent"
     tools:context=".SecondFragment">
 
-    <TextView
-        android:id="@+id/textview_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/button_second"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/task_adder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp">
+        <TextView
+                android:id="@+id/addname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Название задачи:"
+                android:textSize="25sp"
+                app:layout_constraintTop_toTopOf="@id/task_adder"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@id/task_adder"
+                android:layout_marginStart="20dp"/>
+        <EditText
+                android:id="@+id/entername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/addname"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@id/task_adder"
+                android:layout_marginStart="20dp"
+                android:inputType="text"
+                android:hint="Чем займемся?" />
 
+        <TextView
+                android:id="@+id/addDescr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Описание задачи:"
+                android:textSize="25sp"
+                app:layout_constraintTop_toBottomOf="@id/entername"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@id/task_adder"
+                android:layout_marginStart="20dp"/>
+        <EditText
+                android:id="@+id/enterdescr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/addDescr"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@id/task_adder"
+                android:layout_marginStart="20dp"
+                android:inputType="text"
+                android:hint="Подробности" />
+
+        <TextView
+                android:id="@+id/addDur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Продолжительность:"
+                android:textSize="24sp"
+                app:layout_constraintTop_toBottomOf="@id/enterdescr"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="@id/task_adder"
+                android:layout_marginStart="20dp"/>
+        <EditText
+                android:id="@+id/enterdur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/task_adder"
+                app:layout_constraintTop_toBottomOf="@id/addDur"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="20dp"
+                android:inputType="datetime"
+                android:hint="Дата и время"/>
+
+        <TextView
+                android:id="@+id/addDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Дедлайн:"
+                android:textSize="25sp"
+                app:layout_constraintTop_toBottomOf="@id/enterdur"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@id/task_adder"
+                android:layout_marginStart="20dp"/>
+        <EditText
+                android:id="@+id/enterdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/addDate"
+                app:layout_constraintTop_toBottomOf="@id/enterdur"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="12dp"
+                android:inputType="datetime"
+                android:hint="Дата и время"/>
+
+        <TextView
+                android:id="@+id/addImp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Важно:"
+                android:textSize="25sp"
+                app:layout_constraintTop_toBottomOf="@id/enterdate"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@id/task_adder"
+                android:layout_marginStart="20dp"/>
+        <CheckBox
+                android:id="@+id/enterImp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/enterdate"
+                app:layout_constraintStart_toEndOf="@id/addImp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+            android:id="@+id/button_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сохранить"
+            app:layout_constraintBottom_toTopOf="@id/button_second"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/task_adder" />
     <Button
         android:id="@+id/button_second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/previous"
+        android:text="Отменить"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
+        app:layout_constraintTop_toBottomOf="@id/button_third" />
 </androidx.constraintlayout.widget.ConstraintLayout>
