@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import java.util.*
 
-class TimePickerFragment: DialogFragment() {
+class TimePickerFragment : DialogFragment() {
     private lateinit var timeListener: TimePickerDialog.OnTimeSetListener
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -18,15 +18,15 @@ class TimePickerFragment: DialogFragment() {
         return TimePickerDialog(requireContext(), timeListener, hour, minute, true)
     }
 
-    fun setTimeSetListener(listener: TimePickerDialog.OnTimeSetListener){
+    fun setTimeSetListener(listener: TimePickerDialog.OnTimeSetListener) {
         timeListener = listener
     }
 
-    companion object{
+    companion object {
         fun newInstance(listener: TimePickerDialog.OnTimeSetListener): TimePickerFragment {
             val instance = TimePickerFragment()
             instance.setTimeSetListener(listener)
-            return  instance
+            return instance
         }
     }
 }

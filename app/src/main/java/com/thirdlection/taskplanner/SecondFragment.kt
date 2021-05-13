@@ -17,10 +17,9 @@ import androidx.navigation.fragment.findNavController
 import com.thirdlection.taskplanner.timeAndDataPickers.DatePickerFragment
 import com.thirdlection.taskplanner.timeAndDataPickers.TimePickerFragment
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
-class SecondFragment : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+class SecondFragment : Fragment(),
+    DatePickerDialog.OnDateSetListener,
+    TimePickerDialog.OnTimeSetListener {
 
     var d = 0
     var t = 0
@@ -37,28 +36,28 @@ class SecondFragment : Fragment(), DatePickerDialog.OnDateSetListener, TimePicke
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
-        view.findViewById<TextView>(R.id.enterdate).setOnClickListener{
+        view.findViewById<TextView>(R.id.enterdate).setOnClickListener {
             d = 1
             showDatePickerDialog()
         }
-        view.findViewById<TextView>(R.id.entertime).setOnClickListener{
+        view.findViewById<TextView>(R.id.entertime).setOnClickListener {
             t = 1
             showTimePickerDialog()
         }
 
-        view.findViewById<TextView>(R.id.enterdurdatestart).setOnClickListener{
+        view.findViewById<TextView>(R.id.enterdurdatestart).setOnClickListener {
             d = 2
             showDatePickerDialog()
         }
-        view.findViewById<TextView>(R.id.enterdurdateend).setOnClickListener{
+        view.findViewById<TextView>(R.id.enterdurdateend).setOnClickListener {
             d = 3
             showDatePickerDialog()
         }
-        view.findViewById<TextView>(R.id.enterdurtimestart).setOnClickListener{
+        view.findViewById<TextView>(R.id.enterdurtimestart).setOnClickListener {
             t = 2
             showTimePickerDialog()
         }
-        view.findViewById<TextView>(R.id.enterdurtimeend).setOnClickListener{
+        view.findViewById<TextView>(R.id.enterdurtimeend).setOnClickListener {
             t = 3
             showTimePickerDialog()
         }
@@ -75,18 +74,24 @@ class SecondFragment : Fragment(), DatePickerDialog.OnDateSetListener, TimePicke
 
     @SuppressLint("SetTextI18n")
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
-        when(d){
-            1 -> requireView().findViewById<TextView>(R.id.enterdate).text = "$day.${month+1}.$year"
-            2 -> requireView().findViewById<TextView>(R.id.enterdurdatestart).text = "$day.${month+1}.$year"
-            3 -> requireView().findViewById<TextView>(R.id.enterdurdateend).text = "$day.${month+1}.$year"
+        when (d) {
+            1 -> requireView().findViewById<TextView>(R.id.enterdate).text =
+                "$day.${month + 1}.$year"
+            2 -> requireView().findViewById<TextView>(R.id.enterdurdatestart).text =
+                "$day.${month + 1}.$year"
+            3 -> requireView().findViewById<TextView>(R.id.enterdurdateend).text =
+                "$day.${month + 1}.$year"
         }
     }
     @SuppressLint("SetTextI18n")
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         when (t) {
-            1 -> requireView().findViewById<TextView>(R.id.entertime).text = "$hourOfDay:$minute"
-            2 -> requireView().findViewById<TextView>(R.id.enterdurtimestart).text = "$hourOfDay:$minute"
-            3 -> requireView().findViewById<TextView>(R.id.enterdurtimeend).text = "$hourOfDay:$minute"
+            1 -> requireView().findViewById<TextView>(R.id.entertime).text =
+                "$hourOfDay:$minute"
+            2 -> requireView().findViewById<TextView>(R.id.enterdurtimestart).text =
+                "$hourOfDay:$minute"
+            3 -> requireView().findViewById<TextView>(R.id.enterdurtimeend).text =
+                "$hourOfDay:$minute"
         }
     }
 }

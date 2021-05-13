@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import java.util.*
 
-
 class DatePickerFragment : DialogFragment() {
     private lateinit var dateListener: DatePickerDialog.OnDateSetListener
 
@@ -20,15 +19,15 @@ class DatePickerFragment : DialogFragment() {
         return DatePickerDialog(requireContext(), dateListener, year, month, day)
     }
 
-    fun setDateSetListener(listener: DatePickerDialog.OnDateSetListener){
+    fun setDateSetListener(listener: DatePickerDialog.OnDateSetListener) {
         dateListener = listener
     }
 
-    companion object{
+    companion object {
         fun newInstance(listener: DatePickerDialog.OnDateSetListener): DatePickerFragment {
             val instance = DatePickerFragment()
             instance.setDateSetListener(listener)
-            return  instance
+            return instance
         }
     }
 
