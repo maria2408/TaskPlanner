@@ -17,7 +17,8 @@ import androidx.navigation.fragment.findNavController
 import com.thirdlection.taskplanner.timeAndDataPickers.DatePickerFragment
 import com.thirdlection.taskplanner.timeAndDataPickers.TimePickerFragment
 
-class SecondFragment : Fragment(),
+class SecondFragment :
+    Fragment(),
     DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
 
@@ -75,22 +76,28 @@ class SecondFragment : Fragment(),
     @SuppressLint("SetTextI18n")
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
         when (d) {
-            1 -> requireView().findViewById<TextView>(R.id.enterdate).text =
+            1 ->
+                requireView().findViewById<TextView>(R.id.enterdate).text =
                 "$day.${month + 1}.$year"
-            2 -> requireView().findViewById<TextView>(R.id.enterdurdatestart).text =
+            2 ->
+                requireView().findViewById<TextView>(R.id.enterdurdatestart).text =
                 "$day.${month + 1}.$year"
-            3 -> requireView().findViewById<TextView>(R.id.enterdurdateend).text =
+            3 ->
+                requireView().findViewById<TextView>(R.id.enterdurdateend).text =
                 "$day.${month + 1}.$year"
         }
     }
     @SuppressLint("SetTextI18n")
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         when (t) {
-            1 -> requireView().findViewById<TextView>(R.id.entertime).text =
+            1 ->
+                requireView().findViewById<TextView>(R.id.entertime).text =
                 "$hourOfDay:$minute"
-            2 -> requireView().findViewById<TextView>(R.id.enterdurtimestart).text =
+            2 ->
+                requireView().findViewById<TextView>(R.id.enterdurtimestart).text =
                 "$hourOfDay:$minute"
-            3 -> requireView().findViewById<TextView>(R.id.enterdurtimeend).text =
+            3 ->
+                requireView().findViewById<TextView>(R.id.enterdurtimeend).text =
                 "$hourOfDay:$minute"
         }
     }
