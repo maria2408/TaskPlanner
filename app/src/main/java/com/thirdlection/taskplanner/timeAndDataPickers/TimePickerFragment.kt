@@ -29,5 +29,4 @@ class TimePickerFragment: DialogFragment() {
             return  instance
         }
     }
-
 }
