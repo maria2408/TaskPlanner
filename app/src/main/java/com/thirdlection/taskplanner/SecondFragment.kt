@@ -88,11 +88,14 @@ class SecondFragment :
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         when (t) {
             1 ->
-                requireView().findViewById<TextView>(R.id.entertime).text = "$hourOfDay:$minute"
+                requireView().findViewById<TextView>(R.id.entertime).text =
+                    "$hourOfDay:$minute"
             2 ->
-                requireView().findViewById<TextView>(R.id.enterdurtimestart).text = "$hourOfDay:$minute"
+                requireView().findViewById<TextView>(R.id.enterdurtimestart).text =
+                    "$hourOfDay:$minute"
             3 ->
-                requireView().findViewById<TextView>(R.id.enterdurtimeend).text = "$hourOfDay:$minute"
+                requireView().findViewById<TextView>(R.id.enterdurtimeend).text =
+                    "$hourOfDay:$minute"
         }
     }
 }

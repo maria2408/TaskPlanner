@@ -30,5 +30,4 @@ class DatePickerFragment : DialogFragment() {
             return instance
         }
     }
-
 }
