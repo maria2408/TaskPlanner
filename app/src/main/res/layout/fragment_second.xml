@@ -65,16 +65,67 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="@id/task_adder"
                 android:layout_marginStart="20dp"/>
-        <EditText
-                android:id="@+id/enterdur"
-                android:layout_width="match_parent"
+        <TextView
+                android:id="@+id/enterdurdatestart"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@id/task_adder"
                 app:layout_constraintTop_toBottomOf="@id/addDur"
                 android:layout_marginTop="6dp"
                 android:layout_marginStart="20dp"
-                android:inputType="datetime"
-                android:hint="Дата и время"/>
+                android:text ="дата начала"/>
+        <TextView
+                android:id="@+id/enterdurdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/enterdurdatestart"
+                app:layout_constraintTop_toBottomOf="@id/addDur"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="15dp"
+                android:text=" — "/>
+        <TextView
+                android:id="@+id/enterdurdateend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/enterdurdate"
+                app:layout_constraintTop_toBottomOf="@id/addDur"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="15dp"
+                android:text="дата конца"/>
+
+        <TextView
+                android:id="@+id/enterdurtimestart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/task_adder"
+                app:layout_constraintTop_toBottomOf="@id/enterdurdatestart"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="20dp"
+                android:text="время начала"/>
+        <TextView
+                android:id="@+id/enterdurtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/enterdurtimestart"
+                app:layout_constraintTop_toBottomOf="@id/enterdurdate"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="15dp"
+                android:text=" — "/>
+        <TextView
+                android:id="@+id/enterdurtimeend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/enterdurtime"
+                app:layout_constraintTop_toBottomOf="@id/enterdurdateend"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="15dp"
+                android:text="время конца"/>
 
         <TextView
                 android:id="@+id/addDate"
@@ -82,20 +133,31 @@
                 android:layout_height="wrap_content"
                 android:text="Дедлайн:"
                 android:textSize="25sp"
-                app:layout_constraintTop_toBottomOf="@id/enterdur"
+                app:layout_constraintTop_toBottomOf="@id/enterdurtimestart"
                 android:layout_marginTop="15dp"
                 app:layout_constraintStart_toStartOf="@id/task_adder"
                 android:layout_marginStart="20dp"/>
-        <EditText
+        <TextView
                 android:id="@+id/enterdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/addDate"
-                app:layout_constraintTop_toBottomOf="@id/enterdur"
-                android:layout_marginTop="6dp"
+                app:layout_constraintTop_toBottomOf="@id/enterdurtime"
+                android:layout_marginTop="15dp"
                 android:layout_marginStart="12dp"
-                android:inputType="datetime"
-                android:hint="Дата и время"/>
+                android:textSize="20sp"
+                android:hint="Дата"
+                />
+        <TextView
+                android:id="@+id/entertime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/enterdate"
+                app:layout_constraintTop_toBottomOf="@id/enterdurtime"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="12dp"
+                android:textSize="20sp"
+                android:hint="Время"/>
 
         <TextView
                 android:id="@+id/addImp"
