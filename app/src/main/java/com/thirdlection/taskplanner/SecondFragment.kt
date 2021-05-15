@@ -77,11 +77,14 @@ class SecondFragment :
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
         when (d) {
             1 ->
-                requireView().findViewById<TextView>(R.id.enterdate).text = "$day.${month + 1}.$year"
+                requireView().findViewById<TextView>(R.id.enterdate).text =
+                    "$day.${month + 1}.$year"
             2 ->
-                requireView().findViewById<TextView>(R.id.enterdurdatestart).text = "$day.${month + 1}.$year"
+                requireView().findViewById<TextView>(R.id.enterdurdatestart).text =
+                    "$day.${month + 1}.$year"
             3 ->
-                requireView().findViewById<TextView>(R.id.enterdurdateend).text = "$day.${month + 1}.$year"
+                requireView().findViewById<TextView>(R.id.enterdurdateend).text =
+                    "$day.${month + 1}.$year"
         }
     }
     @SuppressLint("SetTextI18n")
