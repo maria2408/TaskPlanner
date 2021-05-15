@@ -24,9 +24,11 @@ class SecondFragment :
 
     var d = 0
     var t = 0
-    val case1 = 1
-    val case2 = 2
-    val case3 = 3
+    companion object{
+        const val case1 = 1
+        const val case2 = 2
+        const val case3 = 3
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
