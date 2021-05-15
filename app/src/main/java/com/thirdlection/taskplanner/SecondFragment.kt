@@ -24,7 +24,7 @@ class SecondFragment :
 
     var d = 0
     var t = 0
-    companion object{
+    companion object {
         const val case1 = 1
         const val case2 = 2
         const val case3 = 3
