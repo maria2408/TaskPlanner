@@ -24,6 +24,10 @@ class SecondFragment :
 
     var d = 0
     var t = 0
+    val case1 = 1
+    val case2 = 2
+    val case3 = 3
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -38,28 +42,28 @@ class SecondFragment :
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
         view.findViewById<TextView>(R.id.enterdate).setOnClickListener {
-            d = 1
+            d = case1
             showDatePickerDialog()
         }
         view.findViewById<TextView>(R.id.entertime).setOnClickListener {
-            t = 1
+            t = case1
             showTimePickerDialog()
         }
 
         view.findViewById<TextView>(R.id.enterdurdatestart).setOnClickListener {
-            d = 2
+            d = case2
             showDatePickerDialog()
         }
         view.findViewById<TextView>(R.id.enterdurdateend).setOnClickListener {
-            d = 3
+            d = case3
             showDatePickerDialog()
         }
         view.findViewById<TextView>(R.id.enterdurtimestart).setOnClickListener {
-            t = 2
+            t = case2
             showTimePickerDialog()
         }
         view.findViewById<TextView>(R.id.enterdurtimeend).setOnClickListener {
-            t = 3
+            t = case3
             showTimePickerDialog()
         }
     }
@@ -76,13 +80,13 @@ class SecondFragment :
     @SuppressLint("SetTextI18n")
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
         when (d) {
-            1 ->
+            case1 ->
                 requireView().findViewById<TextView>(R.id.enterdate).text =
                     "$day.${month + 1}.$year"
-            2 ->
+            case2 ->
                 requireView().findViewById<TextView>(R.id.enterdurdatestart).text =
                     "$day.${month + 1}.$year"
-            3 ->
+            case3 ->
                 requireView().findViewById<TextView>(R.id.enterdurdateend).text =
                     "$day.${month + 1}.$year"
         }
@@ -90,13 +94,13 @@ class SecondFragment :
     @SuppressLint("SetTextI18n")
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         when (t) {
-            1 ->
+            case1 ->
                 requireView().findViewById<TextView>(R.id.entertime).text =
                     "$hourOfDay:$minute"
-            2 ->
+            case2 ->
                 requireView().findViewById<TextView>(R.id.enterdurtimestart).text =
                     "$hourOfDay:$minute"
-            3 ->
+            case3 ->
                 requireView().findViewById<TextView>(R.id.enterdurtimeend).text =
                     "$hourOfDay:$minute"
         }
