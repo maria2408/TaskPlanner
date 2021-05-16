@@ -7,10 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.TextView
-import android.widget.TimePicker
+import android.widget.*
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -40,8 +37,28 @@ class SecondFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val nameid = view.findViewById<EditText>(R.id.entername)
+        val descid = view.findViewById<EditText>(R.id.enterdescr)
+        val dDateid = view.findViewById<TextView>(R.id.enterdate)
+        val dTimeid = view.findViewById<TextView>(R.id.entertime)
+        val durSD = view.findViewById<TextView>(R.id.enterdurdatestart)
+        val durED = view.findViewById<TextView>(R.id.enterdurdateend)
+        val durST = view.findViewById<TextView>(R.id.enterdurtimestart)
+        val durET = view.findViewById<TextView>(R.id.enterdurtimeend)
+        val imp = view.findViewById<CheckBox>(R.id.enterImp)
+
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        }
+        view.findViewById<Button>(R.id.button_third).setOnClickListener {
+            if (nameid.text.toString().isNotEmpty()) {
+                var task = Task(nameid.text.toString(), descid.text.toString(), dDateid.text.toString(),
+                    dTimeid.text.toString(), durSD.text.toString(), durED.text.toString(),
+                    durST.text.toString(), durET.text.toString(), imp.isChecked.compareTo(false))
+                var db = DataBaseHandler(context)
+                db.insertData(task)
+            } else
+                Toast.makeText(context, "Заполните название задачи", Toast.LENGTH_SHORT).show()
         }
         view.findViewById<TextView>(R.id.enterdate).setOnClickListener {
             d = case1
