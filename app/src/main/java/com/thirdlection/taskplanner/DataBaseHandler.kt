@@ -6,18 +6,18 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 
-const val DatabaseName = "MyTasks"
-const val TableName = "Tasks"
-const val ColId = "id"
-const val ColName = "name"
-const val ColDescrip = "description"
-const val ColDeadlineDate = "Deadline_date"
-const val ColDeadlineTime = "Deadline_time"
-const val ColDurStartD = "Duration_start_date"
-const val ColDurEndD = "Duration_end_date"
-const val ColDurStartT = "Duration_start_time"
-const val ColDurEndT = "Duration_end_time"
-const val ColImp = "Importance"
+val DatabaseName: String = "MyTasks"
+val TableName: String = "Tasks"
+val ColId: String = "id"
+val ColName: String = "name"
+val ColDescrip: String = "description"
+val ColDeadlineDate: String = "Deadline_date"
+val ColDeadlineTime: String = "Deadline_time"
+val ColDurStartD: String = "Duration_start_date"
+val ColDurEndD: String = "Duration_end_date"
+val ColDurStartT: String = "Duration_start_time"
+val ColDurEndT: String = "Duration_end_time"
+val ColImp: String = "Importance"
 
 class DataBaseHandler(private var context: Context?) :
     SQLiteOpenHelper(
