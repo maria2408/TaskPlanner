@@ -19,7 +19,12 @@ const val ColDurStartT = "Duration_start_time"
 const val ColDurEndT = "Duration_end_time"
 const val ColImp = "Importance"
 
-class DataBaseHandler(private var context: Context?) : SQLiteOpenHelper(context, DatabaseName, null, 1) {
+class DataBaseHandler(private var context: Context?) :
+    SQLiteOpenHelper(
+        context, DatabaseName,
+        null,
+        1
+    ) {
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable = "CREATE TABLE " + TableName + " (" +
             ColId + " INTEGER PRIMARY KEY AUTOINCREMENT," +
