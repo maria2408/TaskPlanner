@@ -6,20 +6,20 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 
-val DatabaseName = "MyTasks"
-val TableName = "Tasks"
-val ColId = "id"
-val ColName = "name"
-val ColDescrip = "description"
-val ColDeadlineDate = "Deadline_date"
-val ColDeadlineTime = "Deadline_time"
-val ColDurStartD = "Duration_start_date"
-val ColDurEndD = "Duration_end_date"
-val ColDurStartT = "Duration_start_time"
-val ColDurEndT = "Duration_end_time"
-val ColImp = "Importance"
+const val DatabaseName = "MyTasks"
+const val TableName = "Tasks"
+const val ColId = "id"
+const val ColName = "name"
+const val ColDescrip = "description"
+const val ColDeadlineDate = "Deadline_date"
+const val ColDeadlineTime = "Deadline_time"
+const val ColDurStartD = "Duration_start_date"
+const val ColDurEndD = "Duration_end_date"
+const val ColDurStartT = "Duration_start_time"
+const val ColDurEndT = "Duration_end_time"
+const val ColImp = "Importance"
 
-class DataBaseHandler(var context: Context?) : SQLiteOpenHelper(context, DatabaseName, null, 1) {
+class DataBaseHandler(private var context: Context?) : SQLiteOpenHelper(context, DatabaseName, null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable = "CREATE TABLE " + TableName + " (" +
             ColId + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -42,7 +42,7 @@ class DataBaseHandler(var context: Context?) : SQLiteOpenHelper(context, Databas
 
     fun insertData(task: Task) {
         val db = this.writableDatabase
-        var cv = ContentValues()
+        val cv = ContentValues()
         cv.put(ColName, task.name)
         cv.put(ColDescrip, task.desc)
         cv.put(ColDeadlineDate, task.deadlineDate)
@@ -52,7 +52,7 @@ class DataBaseHandler(var context: Context?) : SQLiteOpenHelper(context, Databas
         cv.put(ColDurStartT, task.durStartTime)
         cv.put(ColDurEndT, task.durEndTime)
         cv.put(ColImp, task.importance)
-        var result = db.insert(TableName, null, cv)
+        val result = db.insert(TableName, null, cv)
         if (result == -1.toLong())
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
         else
