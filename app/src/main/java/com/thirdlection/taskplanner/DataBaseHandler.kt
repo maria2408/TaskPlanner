@@ -21,7 +21,8 @@ const val ColImp = "Importance"
 
 class DataBaseHandler(private var context: Context?) :
     SQLiteOpenHelper(
-        context, DatabaseName,
+        context,
+        DatabaseName,
         null,
         1
     ) {
