@@ -19,7 +19,7 @@ val ColDurStartT = "Duration_start_time"
 val ColDurEndT = "Duration_end_time"
 val ColImp = "Importance"
 
-class DataBaseHandler (var context: Context?) : SQLiteOpenHelper (context, DatabaseName, null, 1) {
+class DataBaseHandler(var context: Context?) : SQLiteOpenHelper(context, DatabaseName, null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable = "CREATE TABLE " + TableName + " (" +
             ColId + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -40,7 +40,7 @@ class DataBaseHandler (var context: Context?) : SQLiteOpenHelper (context, Datab
         TODO("Not yet implemented")
     }
 
-    fun insertData (task : Task){
+    fun insertData(task: Task) {
         val db = this.writableDatabase
         var cv = ContentValues()
         cv.put(ColName, task.name)
@@ -58,5 +58,4 @@ class DataBaseHandler (var context: Context?) : SQLiteOpenHelper (context, Datab
         else
             Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
     }
-
 }

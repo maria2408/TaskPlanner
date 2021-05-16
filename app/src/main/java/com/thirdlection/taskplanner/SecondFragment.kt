@@ -7,7 +7,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.DatePicker
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.TimePicker
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -52,9 +58,17 @@ class SecondFragment :
         }
         view.findViewById<Button>(R.id.button_third).setOnClickListener {
             if (nameid.text.toString().isNotEmpty()) {
-                var task = Task(nameid.text.toString(), descid.text.toString(), dDateid.text.toString(),
-                    dTimeid.text.toString(), durSD.text.toString(), durED.text.toString(),
-                    durST.text.toString(), durET.text.toString(), imp.isChecked.compareTo(false))
+                var task = Task(
+                    nameid.text.toString(),
+                    descid.text.toString(),
+                    dDateid.text.toString(),
+                    dTimeid.text.toString(),
+                    durSD.text.toString(),
+                    durED.text.toString(),
+                    durST.text.toString(),
+                    durET.text.toString(),
+                    imp.isChecked.compareTo(false)
+                )
                 var db = DataBaseHandler(context)
                 db.insertData(task)
             } else
