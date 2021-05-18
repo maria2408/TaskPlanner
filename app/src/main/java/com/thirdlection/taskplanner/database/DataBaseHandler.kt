@@ -1,10 +1,9 @@
-package com.thirdlection.taskplanner
+package com.thirdlection.taskplanner.database
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.widget.Toast
 
 object Constants {
     const val DatabaseName: String = "MyTasks"
@@ -21,7 +20,7 @@ object Constants {
     const val ColImp: String = "Importance"
 }
 
-class DataBaseHandler(private var context: Context?) :
+class DataBaseHandler(context: Context?) :
     SQLiteOpenHelper(
         context,
         Constants.DatabaseName,
@@ -45,7 +44,28 @@ class DataBaseHandler(private var context: Context?) :
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("Not yet implemented")
+        db?.execSQL("DROP TABLE IF EXISTS ${Constants.TableName}")
+        onCreate(db)
+    }
+
+    fun listTasks(): ArrayList<Task> {
+        val sql = "select * from ${Constants.TableName}"
+        val db = this.readableDatabase
+        val storeTask = ArrayList<Task>()
+        val cursor = db.rawQuery(sql, null)
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getString(0).toInt()
+                val name = cursor.getString(1)
+                val desc = cursor.getString(2)
+                val dDate = cursor.getString(3)
+                val dTime = cursor.getString(4)
+                storeTask.add(Task(id, name, desc, dDate, dTime))
+            }
+            while (cursor.moveToNext())
+        }
+        cursor.close()
+        return storeTask
     }
 
     fun insertData(task: Task) {
@@ -60,10 +80,6 @@ class DataBaseHandler(private var context: Context?) :
         cv.put(Constants.ColDurStartT, task.durStartTime)
         cv.put(Constants.ColDurEndT, task.durEndTime)
         cv.put(Constants.ColImp, task.importance)
-        val result = db.insert(Constants.TableName, null, cv)
-        if (result == -1.toLong())
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
-        else
-            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+        db.insert(Constants.TableName, null, cv)
     }
 }

@@ -17,6 +17,8 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.thirdlection.taskplanner.database.DataBaseHandler
+import com.thirdlection.taskplanner.database.Task
 import com.thirdlection.taskplanner.timeAndDataPickers.DatePickerFragment
 import com.thirdlection.taskplanner.timeAndDataPickers.TimePickerFragment
 
@@ -58,7 +60,7 @@ class SecondFragment :
         }
         view.findViewById<Button>(R.id.button_third).setOnClickListener {
             if (nameid.text.toString().isNotEmpty()) {
-                var task = Task(
+                val task = Task(
                     nameid.text.toString(),
                     descid.text.toString(),
                     dDateid.text.toString(),
@@ -69,10 +71,11 @@ class SecondFragment :
                     durET.text.toString(),
                     imp.isChecked.compareTo(false)
                 )
-                var db = DataBaseHandler(context)
+                val db = DataBaseHandler(context)
                 db.insertData(task)
             } else
                 Toast.makeText(context, "Заполните название задачи", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
         view.findViewById<TextView>(R.id.enterdate).setOnClickListener {
             d = case1
@@ -114,28 +117,46 @@ class SecondFragment :
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
         when (d) {
             case1 ->
-                requireView().findViewById<TextView>(R.id.enterdate).text =
-                    "$day.${month + 1}.$year"
+                if (day < 10)
+                    requireView().findViewById<TextView>(R.id.enterdate).text =
+                        "0$day.${month + 1}.$year"
+                else requireView().findViewById<TextView>(R.id.enterdate).text =
+                        "$day.${month + 1}.$year"
             case2 ->
-                requireView().findViewById<TextView>(R.id.enterdurdatestart).text =
-                    "$day.${month + 1}.$year"
+                if (day < 10)
+                    requireView().findViewById<TextView>(R.id.enterdurdatestart).text =
+                        "0$day.${month + 1}.$year"
+                else requireView().findViewById<TextView>(R.id.enterdurdatestart).text =
+                        "$day.${month + 1}.$year"
             case3 ->
-                requireView().findViewById<TextView>(R.id.enterdurdateend).text =
-                    "$day.${month + 1}.$year"
+                if (day < 10)
+                    requireView().findViewById<TextView>(R.id.enterdurdateend).text =
+                        "0$day.${month + 1}.$year"
+                else requireView().findViewById<TextView>(R.id.enterdurdateend).text =
+                        "$day.${month + 1}.$year"
         }
     }
     @SuppressLint("SetTextI18n")
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         when (t) {
             case1 ->
-                requireView().findViewById<TextView>(R.id.entertime).text =
-                    "$hourOfDay:$minute"
+                if (hourOfDay < 10)
+                    requireView().findViewById<TextView>(R.id.entertime).text =
+                        "0$hourOfDay:$minute"
+                else requireView().findViewById<TextView>(R.id.entertime).text =
+                        "$hourOfDay:$minute"
             case2 ->
-                requireView().findViewById<TextView>(R.id.enterdurtimestart).text =
-                    "$hourOfDay:$minute"
+                if (hourOfDay < 10)
+                    requireView().findViewById<TextView>(R.id.enterdurtimestart).text =
+                        "0$hourOfDay:$minute"
+                else requireView().findViewById<TextView>(R.id.enterdurtimestart).text =
+                        "$hourOfDay:$minute"
             case3 ->
-                requireView().findViewById<TextView>(R.id.enterdurtimeend).text =
-                    "$hourOfDay:$minute"
+                if (hourOfDay < 10)
+                    requireView().findViewById<TextView>(R.id.enterdurtimeend).text =
+                        "0$hourOfDay:$minute"
+                else requireView().findViewById<TextView>(R.id.enterdurtimeend).text =
+                        "$hourOfDay:$minute"
         }
     }
 }

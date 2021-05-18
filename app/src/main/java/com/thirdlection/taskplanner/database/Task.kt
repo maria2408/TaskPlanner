@@ -1,4 +1,4 @@
-package com.thirdlection.taskplanner
+package com.thirdlection.taskplanner.database
 
 class Task {
     var id: Int = 0
@@ -32,5 +32,18 @@ class Task {
         this.durStartTime = durSTime
         this.durEndTime = durETime
         this.importance = imp
+    }
+    constructor(
+        id: Int,
+        name: String,
+        desc: String,
+        dDate: String,
+        dTime: String
+    ){
+        this.id = id
+        this.name = name
+        this.desc = desc
+        this.deadlineDate = dDate
+        this.deadlineTime = dTime
     }
 }
