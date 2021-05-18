@@ -121,19 +121,19 @@ class SecondFragment :
                     requireView().findViewById<TextView>(R.id.enterdate).text =
                         "0$day.${month + 1}.$year"
                 else requireView().findViewById<TextView>(R.id.enterdate).text =
-                        "$day.${month + 1}.$year"
+                    "$day.${month + 1}.$year"
             case2 ->
                 if (day < 10)
                     requireView().findViewById<TextView>(R.id.enterdurdatestart).text =
                         "0$day.${month + 1}.$year"
                 else requireView().findViewById<TextView>(R.id.enterdurdatestart).text =
-                        "$day.${month + 1}.$year"
+                    "$day.${month + 1}.$year"
             case3 ->
                 if (day < 10)
                     requireView().findViewById<TextView>(R.id.enterdurdateend).text =
                         "0$day.${month + 1}.$year"
                 else requireView().findViewById<TextView>(R.id.enterdurdateend).text =
-                        "$day.${month + 1}.$year"
+                    "$day.${month + 1}.$year"
         }
     }
     @SuppressLint("SetTextI18n")
@@ -144,19 +144,19 @@ class SecondFragment :
                     requireView().findViewById<TextView>(R.id.entertime).text =
                         "0$hourOfDay:$minute"
                 else requireView().findViewById<TextView>(R.id.entertime).text =
-                        "$hourOfDay:$minute"
+                    "$hourOfDay:$minute"
             case2 ->
                 if (hourOfDay < 10)
                     requireView().findViewById<TextView>(R.id.enterdurtimestart).text =
                         "0$hourOfDay:$minute"
                 else requireView().findViewById<TextView>(R.id.enterdurtimestart).text =
-                        "$hourOfDay:$minute"
+                    "$hourOfDay:$minute"
             case3 ->
                 if (hourOfDay < 10)
                     requireView().findViewById<TextView>(R.id.enterdurtimeend).text =
                         "0$hourOfDay:$minute"
                 else requireView().findViewById<TextView>(R.id.enterdurtimeend).text =
-                        "$hourOfDay:$minute"
+                    "$hourOfDay:$minute"
         }
     }
 }
