@@ -4,6 +4,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.thirdlection.taskplanner.database.Constants.n3
+import com.thirdlection.taskplanner.database.Constants.n4
 
 object Constants {
     const val DatabaseName: String = "MyTasks"
@@ -18,6 +20,8 @@ object Constants {
     const val ColDurStartT: String = "Duration_start_time"
     const val ColDurEndT: String = "Duration_end_time"
     const val ColImp: String = "Importance"
+    const val n3: Int = 3
+    const val n4: Int = 4
 }
 
 class DataBaseHandler(context: Context?) :
@@ -58,8 +62,8 @@ class DataBaseHandler(context: Context?) :
                 val id = cursor.getString(0).toInt()
                 val name = cursor.getString(1)
                 val desc = cursor.getString(2)
-                val dDate = cursor.getString(3)
-                val dTime = cursor.getString(4)
+                val dDate = cursor.getString(n3)
+                val dTime = cursor.getString(n4)
                 storeTask.add(Task(id, name, desc, dDate, dTime))
             }
             while (cursor.moveToNext())
