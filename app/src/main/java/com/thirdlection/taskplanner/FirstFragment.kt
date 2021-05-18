@@ -37,8 +37,8 @@ class FirstFragment : Fragment() {
         if (allTasks.size > 0) {
             taskViewId.visibility = View.VISIBLE
             val mAdapter = TaskAdapter(requireContext(), allTasks)
-            taskViewId.adapter = mAdapter }
-        else {
+            taskViewId.adapter = mAdapter
+        } else {
             taskViewId.visibility = View.GONE
             Toast.makeText(
                 context,

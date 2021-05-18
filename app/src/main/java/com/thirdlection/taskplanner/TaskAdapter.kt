@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thirdlection.taskplanner.database.DataBaseHandler
 import com.thirdlection.taskplanner.database.Task
 
-class TaskAdapter(context : Context, listTasks : ArrayList<Task>):
+class TaskAdapter(context: Context, listTasks: ArrayList<Task>) :
     RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
     private var listTasks: ArrayList<Task>
     private val mArrayList: ArrayList<Task>
