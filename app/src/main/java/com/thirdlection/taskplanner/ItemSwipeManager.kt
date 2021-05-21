@@ -145,5 +145,4 @@ class ItemSwipeManger(
     interface SwipeListener {
         fun onSwiped(viewHolder: RecyclerView.ViewHolder)
     }
-
 }

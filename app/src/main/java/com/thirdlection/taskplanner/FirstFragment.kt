@@ -1,27 +1,25 @@
 package com.thirdlection.taskplanner
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thirdlection.taskplanner.database.DataBaseHandler
 import com.thirdlection.taskplanner.database.Task
-import kotlinx.coroutines.selects.select
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment(), ItemSwipeManger.SwipeListener, TaskAdapter.OnTaskListener {
+class FirstFragment :
+    Fragment(),
+    ItemSwipeManger.SwipeListener,
+    TaskAdapter.OnTaskListener {
 
     lateinit var itemSwipeManger: ItemSwipeManger
     lateinit var taskViewId: RecyclerView
@@ -74,18 +72,33 @@ class FirstFragment : Fragment(), ItemSwipeManger.SwipeListener, TaskAdapter.OnT
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder) {
         val position = viewHolder.adapterPosition
         if (position != RecyclerView.NO_POSITION) {
-            val mAdapter = TaskAdapter(requireContext(), DataBaseHandler(context).listTasks(), this)
-            mAdapter.removeItem(position, requireContext(), DataBaseHandler(context).listTasks().get(position).id)
+            val mAdapter = TaskAdapter(
+                requireContext(),
+                DataBaseHandler(context).listTasks(),
+                this
+            )
+            mAdapter.removeItem(
+                position,
+                requireContext(),
+                DataBaseHandler(context).listTasks().get(position).id
+            )
         }
     }
 
-    override fun onTaskClick(position: Int){
+    override fun onTaskClick(position: Int) {
         findNavController().navigate(R.id.action_FirstFragment_to_ThirdFragment)
-
     }
 
     override fun onCheckboxClick(position: Int) {
-            val mAdapter = TaskAdapter(requireContext(), DataBaseHandler(context).listTasks(), this)
-            mAdapter.removeItem(position, requireContext(), DataBaseHandler(context).listTasks().get(position).id)
+            val mAdapter = TaskAdapter(
+                requireContext(),
+                DataBaseHandler(context).listTasks(),
+                this
+            )
+            mAdapter.removeItem(
+                position,
+                requireContext(),
+                DataBaseHandler(context).listTasks().get(position).id
+            )
     }
 }

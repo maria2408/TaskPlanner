@@ -31,7 +31,6 @@ class TaskAdapter(context: Context, listTasks: ArrayList<Task>, onTaskListener: 
     override fun onBindViewHolder(holder: TaskHolder, position: Int) {
         val task = listTasks[position]
         holder.bind(task)
-
     }
 
     override fun getItemCount(): Int {
@@ -45,7 +44,12 @@ class TaskAdapter(context: Context, listTasks: ArrayList<Task>, onTaskListener: 
         DataBaseHandler(context).deleteData(id)
     }
 
-    class TaskHolder(itemView: View, OnTaskListener: OnTaskListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class TaskHolder(
+        itemView: View,
+        OnTaskListener: OnTaskListener
+    ) :
+        RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
         private val tName: TextView = itemView.findViewById(R.id.task_name)
         private val tDescription: TextView = itemView.findViewById(R.id.task_description)
         private val tDate: TextView = itemView.findViewById(R.id.task_date)
