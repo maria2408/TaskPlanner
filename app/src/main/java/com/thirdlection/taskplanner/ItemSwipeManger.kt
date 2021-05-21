@@ -42,7 +42,9 @@ class ItemSwipeManger(
     }
 
     override fun onChildViewAttachedToWindow(view: View) {
+        TODO("Not yet implemented")
     }
+
 
     override fun onChildViewDetachedFromWindow(view: View) {
         val recyclerView = recyclerView ?: return
@@ -97,6 +99,7 @@ class ItemSwipeManger(
     }
 
     override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+        TODO("Not yet implemented")
     }
 
     private fun animateWithFling(viewHolder: RecyclerView.ViewHolder, velocity: Float) {

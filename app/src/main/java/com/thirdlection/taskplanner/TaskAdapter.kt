@@ -46,7 +46,7 @@ class TaskAdapter(context: Context, listTasks: ArrayList<Task>, onTaskListener: 
 
     class TaskHolder(
         itemView: View,
-        OnTaskListener: OnTaskListener
+        onTaskListener: OnTaskListener
     ) :
         RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
@@ -54,12 +54,12 @@ class TaskAdapter(context: Context, listTasks: ArrayList<Task>, onTaskListener: 
         private val tDescription: TextView = itemView.findViewById(R.id.task_description)
         private val tDate: TextView = itemView.findViewById(R.id.task_date)
         private val tTime: TextView = itemView.findViewById(R.id.task_time)
-        private val CheckBox: CheckBox = itemView.findViewById(R.id.tick)
-        var onTaskListener: OnTaskListener = OnTaskListener
+        private val checkBox: CheckBox = itemView.findViewById(R.id.tick)
+        var onTaskListener: OnTaskListener = onTaskListener
 
         init {
             itemView.setOnClickListener(this)
-            CheckBox.setOnCheckedChangeListener { _, isChecked ->
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked)
                     onTaskListener.onCheckboxClick(adapterPosition)
             }
