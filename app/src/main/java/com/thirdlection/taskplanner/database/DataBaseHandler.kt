@@ -2,7 +2,6 @@ package com.thirdlection.taskplanner.database
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.thirdlection.taskplanner.database.Constants.n3
@@ -87,7 +86,7 @@ class DataBaseHandler(context: Context?) :
         cv.put(Constants.ColImp, task.importance)
         db.insert(Constants.TableName, null, cv)
     }
-    fun deleteData(id: Int){
+    fun deleteData(id: Int) {
         val db = this.writableDatabase
         db.delete(Constants.TableName, Constants.ColId + " = " + id, null)
         db.close()
@@ -109,6 +108,7 @@ class DataBaseHandler(context: Context?) :
             Constants.TableName,
             cv,
             Constants.ColId + " = " + id,
-            null)
+            null
+        )
     }
 }

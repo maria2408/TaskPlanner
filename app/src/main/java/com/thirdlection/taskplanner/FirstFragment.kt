@@ -90,15 +90,15 @@ class FirstFragment :
     }
 
     override fun onCheckboxClick(position: Int) {
-            val mAdapter = TaskAdapter(
-                requireContext(),
-                DataBaseHandler(context).listTasks(),
-                this
-            )
-            mAdapter.removeItem(
-                position,
-                requireContext(),
-                DataBaseHandler(context).listTasks().get(position).id
-            )
+        val mAdapter = TaskAdapter(
+            requireContext(),
+            DataBaseHandler(context).listTasks(),
+            this
+        )
+        mAdapter.removeItem(
+            position,
+            requireContext(),
+            DataBaseHandler(context).listTasks().get(position).id
+        )
     }
 }

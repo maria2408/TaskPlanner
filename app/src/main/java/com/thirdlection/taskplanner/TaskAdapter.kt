@@ -61,7 +61,7 @@ class TaskAdapter(context: Context, listTasks: ArrayList<Task>, onTaskListener: 
             itemView.setOnClickListener(this)
             CheckBox.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked)
-                   onTaskListener.onCheckboxClick(adapterPosition)
+                    onTaskListener.onCheckboxClick(adapterPosition)
             }
         }
         fun bind(task: Task) {
@@ -75,7 +75,7 @@ class TaskAdapter(context: Context, listTasks: ArrayList<Task>, onTaskListener: 
             onTaskListener.onTaskClick(adapterPosition)
         }
     }
-    interface OnTaskListener{
+    interface OnTaskListener {
         fun onTaskClick(position: Int)
         fun onCheckboxClick(position: Int)
     }
