@@ -47,7 +47,6 @@ class ThirdFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val task: Task = DataBaseHandler(context).listTasks().get(0)
         view.findViewById<EditText>(R.id.entername).setText(task.name)
         view.findViewById<EditText>(R.id.enterdescr).setText(task.desc)
@@ -59,8 +58,7 @@ class ThirdFragment :
         view.findViewById<TextView>(R.id.entertime).setText(task.deadlineTime)
         if (task.importance == 1)
             view.findViewById<CheckBox>(R.id.enterImp).isChecked = true
-        else
-            view.findViewById<CheckBox>(R.id.enterImp).isChecked = false
+        else view.findViewById<CheckBox>(R.id.enterImp).isChecked = false
 
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
             findNavController().navigate(R.id.action_ThirdFragment_to_FirstFragment)
