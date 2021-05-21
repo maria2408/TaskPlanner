@@ -47,15 +47,6 @@ class ThirdFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val nameid = view.findViewById<EditText>(R.id.entername)
-        val descid = view.findViewById<EditText>(R.id.enterdescr)
-        val dDateid = view.findViewById<TextView>(R.id.enterdate)
-        val dTimeid = view.findViewById<TextView>(R.id.entertime)
-        val durSD = view.findViewById<TextView>(R.id.enterdurdatestart)
-        val durED = view.findViewById<TextView>(R.id.enterdurdateend)
-        val durST = view.findViewById<TextView>(R.id.enterdurtimestart)
-        val durET = view.findViewById<TextView>(R.id.enterdurtimeend)
-        val imp = view.findViewById<CheckBox>(R.id.enterImp)
 
         val task: Task = DataBaseHandler(context).listTasks().get(0)
         view.findViewById<EditText>(R.id.entername).setText(task.name)
@@ -67,24 +58,25 @@ class ThirdFragment :
         view.findViewById<TextView>(R.id.enterdate).setText(task.deadlineDate)
         view.findViewById<TextView>(R.id.entertime).setText(task.deadlineTime)
         if (task.importance == 1)
-            imp.isChecked = true
-        else imp.isChecked = false
+            view.findViewById<CheckBox>(R.id.enterImp).isChecked = true
+        else
+            view.findViewById<CheckBox>(R.id.enterImp).isChecked = false
 
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
             findNavController().navigate(R.id.action_ThirdFragment_to_FirstFragment)
         }
         view.findViewById<Button>(R.id.button_third).setOnClickListener {
-            if (nameid.text.toString().isNotEmpty()) {
+            if (view.findViewById<EditText>(R.id.entername).text.toString().isNotEmpty()) {
                 val t = Task(
-                    nameid.text.toString(),
-                    descid.text.toString(),
-                    dDateid.text.toString(),
-                    dTimeid.text.toString(),
-                    durSD.text.toString(),
-                    durED.text.toString(),
-                    durST.text.toString(),
-                    durET.text.toString(),
-                    imp.isChecked.compareTo(false)
+                    view.findViewById<EditText>(R.id.entername).text.toString(),
+                    view.findViewById<EditText>(R.id.enterdescr).text.toString(),
+                    view.findViewById<TextView>(R.id.enterdate).text.toString(),
+                    view.findViewById<TextView>(R.id.entertime).text.toString(),
+                    view.findViewById<TextView>(R.id.enterdurdatestart).text.toString(),
+                    view.findViewById<TextView>(R.id.enterdurdateend).text.toString(),
+                    view.findViewById<TextView>(R.id.enterdurtimestart).text.toString(),
+                    view.findViewById<TextView>(R.id.enterdurtimeend).text.toString(),
+                    view.findViewById<CheckBox>(R.id.enterImp).isChecked.compareTo(false)
                 )
                 val db = DataBaseHandler(context)
                 db.update(t, DataBaseHandler(context).listTasks().get(0).id)
