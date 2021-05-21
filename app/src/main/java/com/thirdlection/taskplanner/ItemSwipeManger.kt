@@ -45,7 +45,6 @@ class ItemSwipeManger(
         TODO("Not yet implemented")
     }
 
-
     override fun onChildViewDetachedFromWindow(view: View) {
         val recyclerView = recyclerView ?: return
 
