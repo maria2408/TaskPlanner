@@ -7,13 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.TimePicker
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -22,7 +16,7 @@ import com.thirdlection.taskplanner.database.Task
 import com.thirdlection.taskplanner.timeAndDataPickers.DatePickerFragment
 import com.thirdlection.taskplanner.timeAndDataPickers.TimePickerFragment
 
-class SecondFragment :
+class ThirdFragment :
     Fragment(),
     DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
@@ -37,11 +31,11 @@ class SecondFragment :
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false)
+        return inflater.inflate(R.layout.fragment_third, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,12 +50,25 @@ class SecondFragment :
         val durET = view.findViewById<TextView>(R.id.enterdurtimeend)
         val imp = view.findViewById<CheckBox>(R.id.enterImp)
 
+        val task: Task = DataBaseHandler(context).listTasks().get(0)
+        view.findViewById<EditText>(R.id.entername).setText(task.name)
+        view.findViewById<EditText>(R.id.enterdescr).setText(task.desc)
+        view.findViewById<TextView>(R.id.enterdurdatestart).setText(task.durStartDate)
+        view.findViewById<TextView>(R.id.enterdurdateend).setText(task.durEndDate)
+        view.findViewById<TextView>(R.id.enterdurtimestart).setText(task.durStartTime)
+        view.findViewById<TextView>(R.id.enterdurtimeend).setText(task.durEndTime)
+        view.findViewById<TextView>(R.id.enterdate).setText(task.deadlineDate)
+        view.findViewById<TextView>(R.id.entertime).setText(task.deadlineTime)
+        if (task.importance == 1)
+            imp.isChecked = true
+        else imp.isChecked = false
+
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            findNavController().navigate(R.id.action_ThirdFragment_to_FirstFragment)
         }
         view.findViewById<Button>(R.id.button_third).setOnClickListener {
             if (nameid.text.toString().isNotEmpty()) {
-                val task = Task(
+                val t = Task(
                     nameid.text.toString(),
                     descid.text.toString(),
                     dDateid.text.toString(),
@@ -73,8 +80,8 @@ class SecondFragment :
                     imp.isChecked.compareTo(false)
                 )
                 val db = DataBaseHandler(context)
-                db.insertData(task)
-                findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+                db.update(t, DataBaseHandler(context).listTasks().get(0).id)
+                findNavController().navigate(R.id.action_ThirdFragment_to_FirstFragment)
             } else
                 Toast.makeText(context, "Заполните название задачи", Toast.LENGTH_SHORT).show()
         }

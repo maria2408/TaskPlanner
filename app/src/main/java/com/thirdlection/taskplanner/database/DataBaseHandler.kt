@@ -2,6 +2,7 @@ package com.thirdlection.taskplanner.database
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.thirdlection.taskplanner.database.Constants.n3
@@ -85,5 +86,29 @@ class DataBaseHandler(context: Context?) :
         cv.put(Constants.ColDurEndT, task.durEndTime)
         cv.put(Constants.ColImp, task.importance)
         db.insert(Constants.TableName, null, cv)
+    }
+    fun deleteData(id: Int){
+        val db = this.writableDatabase
+        db.delete(Constants.TableName, Constants.ColId + " = " + id, null)
+        db.close()
+    }
+
+    fun update(task: Task, id: Int) {
+        val db = this.writableDatabase
+        val cv = ContentValues()
+        cv.put(Constants.ColName, task.name)
+        cv.put(Constants.ColDescrip, task.desc)
+        cv.put(Constants.ColDeadlineDate, task.deadlineDate)
+        cv.put(Constants.ColDeadlineTime, task.deadlineTime)
+        cv.put(Constants.ColDurStartD, task.durStartDate)
+        cv.put(Constants.ColDurEndD, task.durEndDate)
+        cv.put(Constants.ColDurStartT, task.durStartTime)
+        cv.put(Constants.ColDurEndT, task.durEndTime)
+        cv.put(Constants.ColImp, task.importance)
+        db.update(
+            Constants.TableName,
+            cv,
+            Constants.ColId + " = " + id,
+            null)
     }
 }
