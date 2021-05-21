@@ -1,10 +1,11 @@
-package com.thirdlection.taskplanner
+package com.thirdlection.taskplanner.database
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.widget.Toast
+import com.thirdlection.taskplanner.database.Constants.n3
+import com.thirdlection.taskplanner.database.Constants.n4
 
 object Constants {
     const val DatabaseName: String = "MyTasks"
@@ -19,9 +20,11 @@ object Constants {
     const val ColDurStartT: String = "Duration_start_time"
     const val ColDurEndT: String = "Duration_end_time"
     const val ColImp: String = "Importance"
+    const val n3: Int = 3
+    const val n4: Int = 4
 }
 
-class DataBaseHandler(private var context: Context?) :
+class DataBaseHandler(context: Context?) :
     SQLiteOpenHelper(
         context,
         Constants.DatabaseName,
@@ -45,7 +48,28 @@ class DataBaseHandler(private var context: Context?) :
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("Not yet implemented")
+        db?.execSQL("DROP TABLE IF EXISTS ${Constants.TableName}")
+        onCreate(db)
+    }
+
+    fun listTasks(): ArrayList<Task> {
+        val sql = "select * from ${Constants.TableName}"
+        val db = this.readableDatabase
+        val storeTask = ArrayList<Task>()
+        val cursor = db.rawQuery(sql, null)
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getString(0).toInt()
+                val name = cursor.getString(1)
+                val desc = cursor.getString(2)
+                val dDate = cursor.getString(n3)
+                val dTime = cursor.getString(n4)
+                storeTask.add(Task(id, name, desc, dDate, dTime))
+            }
+            while (cursor.moveToNext())
+        }
+        cursor.close()
+        return storeTask
     }
 
     fun insertData(task: Task) {
@@ -60,10 +84,31 @@ class DataBaseHandler(private var context: Context?) :
         cv.put(Constants.ColDurStartT, task.durStartTime)
         cv.put(Constants.ColDurEndT, task.durEndTime)
         cv.put(Constants.ColImp, task.importance)
-        val result = db.insert(Constants.TableName, null, cv)
-        if (result == -1.toLong())
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
-        else
-            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+        db.insert(Constants.TableName, null, cv)
+    }
+    fun deleteData(id: Int) {
+        val db = this.writableDatabase
+        db.delete(Constants.TableName, Constants.ColId + " = " + id, null)
+        db.close()
+    }
+
+    fun update(task: Task, id: Int) {
+        val db = this.writableDatabase
+        val cv = ContentValues()
+        cv.put(Constants.ColName, task.name)
+        cv.put(Constants.ColDescrip, task.desc)
+        cv.put(Constants.ColDeadlineDate, task.deadlineDate)
+        cv.put(Constants.ColDeadlineTime, task.deadlineTime)
+        cv.put(Constants.ColDurStartD, task.durStartDate)
+        cv.put(Constants.ColDurEndD, task.durEndDate)
+        cv.put(Constants.ColDurStartT, task.durStartTime)
+        cv.put(Constants.ColDurEndT, task.durEndTime)
+        cv.put(Constants.ColImp, task.importance)
+        db.update(
+            Constants.TableName,
+            cv,
+            Constants.ColId + " = " + id,
+            null
+        )
     }
 }

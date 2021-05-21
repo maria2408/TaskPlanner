@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/name_description"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp">
+        <CheckBox
+                android:id="@+id/tick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/name_description"
+                app:layout_constraintTop_toTopOf="@id/name_description"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
+
+        <TextView
+                android:id="@+id/task_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16sp"
+                android:textSize="20sp"
+                android:textColor="#000C50"
+                android:text="Покормить собаку"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/tick"
+                app:layout_constraintTop_toTopOf="@id/name_description" />
+        <TextView
+                android:id="@+id/task_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ADADAD"
+                android:textSize="18sp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="5dp"
+                android:text="корм в шкафу"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/tick"
+                app:layout_constraintTop_toBottomOf="@id/task_name"
+                app:layout_constraintBottom_toBottomOf="@id/name_description"/>
+
+        <TextView
+                android:id="@+id/task_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="15dp"
+                android:text="19.05.2020"
+                android:textColor="#660000"
+                android:textSize="18sp"
+                app:layout_constraintTop_toTopOf="@id/name_description"
+                app:layout_constraintEnd_toEndOf="@id/name_description"/>
+
+        <TextView
+                android:id="@+id/task_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="25dp"
+                android:text="20:00"
+                android:textColor="#660000"
+                android:textSize="18sp"
+                app:layout_constraintTop_toTopOf="@id/task_date"
+                app:layout_constraintEnd_toEndOf="@id/name_description"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
