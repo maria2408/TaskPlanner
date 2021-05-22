@@ -47,18 +47,11 @@ class ThirdFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val task: Task = DataBaseHandler(context).listTasks().get(0)
-        view.findViewById<EditText>(R.id.entername).setText(task.name)
-        view.findViewById<EditText>(R.id.enterdescr).setText(task.desc)
-        view.findViewById<TextView>(R.id.enterdurdatestart).setText(task.durStartDate)
-        view.findViewById<TextView>(R.id.enterdurdateend).setText(task.durEndDate)
-        view.findViewById<TextView>(R.id.enterdurtimestart).setText(task.durStartTime)
-        view.findViewById<TextView>(R.id.enterdurtimeend).setText(task.durEndTime)
-        view.findViewById<TextView>(R.id.enterdate).setText(task.deadlineDate)
-        view.findViewById<TextView>(R.id.entertime).setText(task.deadlineTime)
-        if (task.importance == 1)
-            view.findViewById<CheckBox>(R.id.enterImp).isChecked = true
-        else view.findViewById<CheckBox>(R.id.enterImp).isChecked = false
+
+        val position = arguments?.getInt("Position")
+        if (position != null) {
+            fillScreen(position)
+        }
 
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
             findNavController().navigate(R.id.action_ThirdFragment_to_FirstFragment)
@@ -77,7 +70,7 @@ class ThirdFragment :
                     view.findViewById<CheckBox>(R.id.enterImp).isChecked.compareTo(false)
                 )
                 val db = DataBaseHandler(context)
-                db.update(t, DataBaseHandler(context).listTasks().get(0).id)
+                db.update(t, DataBaseHandler(context).listTasks().get(position!!).id)
                 findNavController().navigate(R.id.action_ThirdFragment_to_FirstFragment)
             } else
                 Toast.makeText(context, "Заполните название задачи", Toast.LENGTH_SHORT).show()
@@ -163,5 +156,19 @@ class ThirdFragment :
                 else requireView().findViewById<TextView>(R.id.enterdurtimeend).text =
                     "$hourOfDay:$minute"
         }
+    }
+    fun fillScreen(position: Int) {
+        val task: Task = DataBaseHandler(context).listTasks().get(position)
+        view?.findViewById<EditText>(R.id.entername)?.setText(task.name)
+        view?.findViewById<EditText>(R.id.enterdescr)?.setText(task.desc)
+        view?.findViewById<TextView>(R.id.enterdurdatestart)?.setText(task.durStartDate)
+        view?.findViewById<TextView>(R.id.enterdurdateend)?.setText(task.durEndDate)
+        view?.findViewById<TextView>(R.id.enterdurtimestart)?.setText(task.durStartTime)
+        view?.findViewById<TextView>(R.id.enterdurtimeend)?.setText(task.durEndTime)
+        view?.findViewById<TextView>(R.id.enterdate)?.setText(task.deadlineDate)
+        view?.findViewById<TextView>(R.id.entertime)?.setText(task.deadlineTime)
+        if (task.importance == 1)
+            view?.findViewById<CheckBox>(R.id.enterImp)?.isChecked = true
+        else view?.findViewById<CheckBox>(R.id.enterImp)?.isChecked = false
     }
 }

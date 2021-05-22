@@ -86,7 +86,9 @@ class FirstFragment :
     }
 
     override fun onTaskClick(position: Int) {
-        findNavController().navigate(R.id.action_FirstFragment_to_ThirdFragment)
+        val pos = Bundle()
+        pos.putInt("Position", position)
+        findNavController().navigate(R.id.action_FirstFragment_to_ThirdFragment, pos)
     }
 
     override fun onCheckboxClick(position: Int) {
