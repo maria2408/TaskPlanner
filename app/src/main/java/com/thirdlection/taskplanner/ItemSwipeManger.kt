@@ -79,13 +79,14 @@ class ItemSwipeManger(
     override fun onTouchEvent(rv: RecyclerView, event: MotionEvent) {
         val swipedChild = swipedChild ?: return
         val velocityTracker = velocityTracker ?: return
+        val unit = 1000
 
         velocityTracker.addMovement(event)
         when (event.actionMasked) {
             MotionEvent.ACTION_MOVE -> swipedChild.translationX = event.x - initialTouchX
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 val swipeViewHolder = rv.findContainingViewHolder(swipedChild) ?: return
-                velocityTracker.computeCurrentVelocity(1000)
+                velocityTracker.computeCurrentVelocity(unit)
                 val velocity = velocityTracker.xVelocity
                 if (velocity > 0) {
                     animateWithFling(swipeViewHolder, velocity)
