@@ -1,14 +1,11 @@
 package com.thirdlection.taskplanner
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +18,8 @@ import com.michalsvec.singlerowcalendar.selection.CalendarSelectionManager
 import com.michalsvec.singlerowcalendar.utils.DateUtils
 import com.thirdlection.taskplanner.database.DataBaseHandler
 import com.thirdlection.taskplanner.database.Task
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 import kotlin.collections.ArrayList
 
 /**
@@ -98,17 +96,24 @@ class FirstFragment :
                 isSelected: Boolean
             ) {
                 // using this method we can bind data to calendar view
-                holder.itemView.findViewById<TextView>(R.id.tv_date_calendar_item).text = DateUtils.getDayNumber(date)
-                holder.itemView.findViewById<TextView>(R.id.tv_day_calendar_item).text = DateUtils.getDay3LettersName(date)
-
+                holder.itemView.findViewById<TextView>(
+                    R.id.tv_date_calendar_item
+                ).text = DateUtils.getDayNumber(date)
+                holder.itemView.findViewById<TextView>(
+                    R.id.tv_day_calendar_item
+                ).text = DateUtils.getDay3LettersName(date)
             }
         }
 
         // using calendar changes observer we can track changes in calendar
         val myCalendarChangesObserver = object : CalendarChangesObserver {
             override fun whenSelectionChanged(isSelected: Boolean, position: Int, date: Date) {
-                view.findViewById<TextView>(R.id.tvDate).text = "${DateUtils.getMonthName(date)}, ${DateUtils.getDayNumber(date)} "
-                view.findViewById<TextView>(R.id.tvDay).text = DateUtils.getDayName(date)
+                view.findViewById<TextView>(
+                    R.id.tvDate
+                ).text = "${DateUtils.getMonthName(date)}, ${DateUtils.getDayNumber(date)} "
+                view.findViewById<TextView>(
+                    R.id.tvDay
+                ).text = DateUtils.getDayName(date)
                 super.whenSelectionChanged(isSelected, position, date)
             }
         }
@@ -124,8 +129,9 @@ class FirstFragment :
         }
 
         // here we init our calendar
-        view.findViewById<com.michalsvec.singlerowcalendar.calendar.SingleRowCalendar>(R.id.main_single_row_calendar)
-            .apply {
+        view.findViewById<com.michalsvec.singlerowcalendar.calendar.SingleRowCalendar>(
+            R.id.main_single_row_calendar
+        ).apply {
             calendarViewManager = myCalendarViewManager
             calendarChangesObserver = myCalendarChangesObserver
             calendarSelectionManager = mySelectionManager

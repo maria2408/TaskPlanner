@@ -2,7 +2,6 @@ package com.thirdlection.taskplanner.database
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.thirdlection.taskplanner.database.Constants.n3
@@ -128,8 +127,11 @@ class DataBaseHandler(context: Context?) :
         )
     }
 
-    fun sortByName(){
+    fun sortByName() {
         val db = this.writableDatabase
-        db.rawQuery("SELECT * FROM " + Constants.TableName + " ORDER BY " + Constants.ColName + " ASC", null).close()
+        db.rawQuery(
+            "SELECT * FROM " + Constants.TableName + " ORDER BY " + Constants.ColName + " ASC",
+            null
+        ).close()
     }
 }

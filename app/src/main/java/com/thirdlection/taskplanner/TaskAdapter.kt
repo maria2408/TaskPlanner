@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.thirdlection.taskplanner.database.DataBaseHandler
 import com.thirdlection.taskplanner.database.Task
-import java.util.Collections.sort
 
 class TaskAdapter(context: Context, listTasks: ArrayList<Task>, onTaskListener: OnTaskListener) :
     RecyclerView.Adapter<TaskAdapter.TaskHolder>() {
@@ -46,7 +45,8 @@ class TaskAdapter(context: Context, listTasks: ArrayList<Task>, onTaskListener: 
         notifyItemRemoved(position)
         DataBaseHandler(context).deleteData(id)
     }
-        fun update(newItems: ArrayList<Task>) {
+
+    fun update(newItems: ArrayList<Task>) {
         // Update the list of items used by the adapter
         listTasks = newItems
         notifyDataSetChanged()
