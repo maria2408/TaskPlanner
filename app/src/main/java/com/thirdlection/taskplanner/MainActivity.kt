@@ -1,11 +1,12 @@
 package com.thirdlection.taskplanner
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.thirdlection.taskplanner.database.DataBaseHandler
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,12 +23,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_sortByname -> true
-            else -> super.onOptionsItemSelected(item)
+        val db = DataBaseHandler(this)
+        val allTasks = db.listTasks()
+        val rv = findViewById<RecyclerView>(R.id.list_recycler_view)
+        rv.layoutManager = LinearLayoutManager(this)
+        val adapter = TaskAdapter(this, allTasks, FirstFragment())
+        rv.adapter = adapter
+        when (item.itemId) {
+            R.id.action_sortByname -> {
+                FirstFragment().allTasks = allTasks
+                allTasks.sortBy { it.name }
+                adapter.notifyDataSetChanged()
+                db.sortByName()
+            }
+            R.id.action_SortByImp -> {
+                FirstFragment().allTasks = allTasks
+                allTasks.sortByDescending { it.importance }
+                adapter.notifyDataSetChanged()
+            }
         }
+        super.onOptionsItemSelected(item)
+        return true
     }
 }

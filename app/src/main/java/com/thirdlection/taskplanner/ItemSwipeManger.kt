@@ -42,7 +42,6 @@ class ItemSwipeManger(
     }
 
     override fun onChildViewAttachedToWindow(view: View) {
-        TODO()
     }
 
     override fun onChildViewDetachedFromWindow(view: View) {
@@ -99,7 +98,6 @@ class ItemSwipeManger(
     }
 
     override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
-        TODO()
     }
 
     private fun animateWithFling(viewHolder: RecyclerView.ViewHolder, velocity: Float) {
