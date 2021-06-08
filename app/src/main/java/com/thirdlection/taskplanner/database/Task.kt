@@ -13,6 +13,29 @@ class Task {
     var importance: Int = 0
 
     constructor (
+        id: Int,
+        name: String,
+        desc: String,
+        dDate: String,
+        dTime: String,
+        durSDate: String,
+        durEDate: String,
+        durSTime: String,
+        durETime: String,
+        imp: Int
+    ) {
+        this.id = id
+        this.name = name
+        this.desc = desc
+        this.deadlineDate = dDate
+        this.deadlineTime = dTime
+        this.durStartDate = durSDate
+        this.durEndDate = durEDate
+        this.durStartTime = durSTime
+        this.durEndTime = durETime
+        this.importance = imp
+    }
+    constructor(
         name: String,
         desc: String,
         dDate: String,
@@ -32,18 +55,5 @@ class Task {
         this.durStartTime = durSTime
         this.durEndTime = durETime
         this.importance = imp
-    }
-    constructor(
-        id: Int,
-        name: String,
-        desc: String,
-        dDate: String,
-        dTime: String
-    ) {
-        this.id = id
-        this.name = name
-        this.desc = desc
-        this.deadlineDate = dDate
-        this.deadlineTime = dTime
     }
 }

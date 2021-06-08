@@ -1,6 +1,7 @@
 package com.thirdlection.taskplanner
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,10 +32,11 @@ class TaskAdapter(context: Context, listTasks: ArrayList<Task>, onTaskListener: 
     override fun onBindViewHolder(holder: TaskHolder, position: Int) {
         val task = listTasks[position]
         holder.bind(task)
+        if (task.importance == 1)
+            holder.itemView.setBackgroundColor(Color.parseColor("#f1dcff"))
     }
 
     override fun getItemCount(): Int {
-        println("Tasks size = ${listTasks.size}")
         return listTasks.size
     }
 
@@ -42,6 +44,12 @@ class TaskAdapter(context: Context, listTasks: ArrayList<Task>, onTaskListener: 
         listTasks.removeAt(position)
         notifyItemRemoved(position)
         DataBaseHandler(context).deleteData(id)
+    }
+
+    fun update(newItems: ArrayList<Task>) {
+        // Update the list of items used by the adapter
+        listTasks = newItems
+        notifyDataSetChanged()
     }
 
     class TaskHolder(
@@ -61,7 +69,7 @@ class TaskAdapter(context: Context, listTasks: ArrayList<Task>, onTaskListener: 
             itemView.setOnClickListener(this)
             checkBox.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked)
-                    onTaskListener.onCheckboxClick(adapterPosition)
+                    onTaskListener.onCheckboxClick(absoluteAdapterPosition)
             }
         }
         fun bind(task: Task) {
@@ -72,7 +80,7 @@ class TaskAdapter(context: Context, listTasks: ArrayList<Task>, onTaskListener: 
         }
 
         override fun onClick(v: View?) {
-            onTaskListener.onTaskClick(adapterPosition)
+            onTaskListener.onTaskClick(absoluteAdapterPosition)
         }
     }
     interface OnTaskListener {

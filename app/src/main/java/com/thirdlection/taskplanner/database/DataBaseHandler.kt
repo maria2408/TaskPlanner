@@ -6,6 +6,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.thirdlection.taskplanner.database.Constants.n3
 import com.thirdlection.taskplanner.database.Constants.n4
+import com.thirdlection.taskplanner.database.Constants.n5
+import com.thirdlection.taskplanner.database.Constants.n6
+import com.thirdlection.taskplanner.database.Constants.n7
+import com.thirdlection.taskplanner.database.Constants.n8
+import com.thirdlection.taskplanner.database.Constants.n9
 
 object Constants {
     const val DatabaseName: String = "MyTasks"
@@ -22,6 +27,11 @@ object Constants {
     const val ColImp: String = "Importance"
     const val n3: Int = 3
     const val n4: Int = 4
+    const val n5: Int = 5
+    const val n6: Int = 6
+    const val n7: Int = 7
+    const val n8: Int = 8
+    const val n9: Int = 9
 }
 
 class DataBaseHandler(context: Context?) :
@@ -64,7 +74,12 @@ class DataBaseHandler(context: Context?) :
                 val desc = cursor.getString(2)
                 val dDate = cursor.getString(n3)
                 val dTime = cursor.getString(n4)
-                storeTask.add(Task(id, name, desc, dDate, dTime))
+                val durSD = cursor.getString(n5)
+                val durED = cursor.getString(n6)
+                val durST = cursor.getString(n7)
+                val durET = cursor.getString(n8)
+                val imp = cursor.getInt(n9)
+                storeTask.add(Task(id, name, desc, dDate, dTime, durSD, durED, durST, durET, imp))
             }
             while (cursor.moveToNext())
         }
@@ -110,5 +125,13 @@ class DataBaseHandler(context: Context?) :
             Constants.ColId + " = " + id,
             null
         )
+    }
+
+    fun sortByName() {
+        val db = this.writableDatabase
+        db.rawQuery(
+            "SELECT * FROM " + Constants.TableName + " ORDER BY " + Constants.ColName + " ASC",
+            null
+        ).close()
     }
 }

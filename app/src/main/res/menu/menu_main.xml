@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.thirdlection.taskplanner.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_sortByname"
         android:orderInCategory="100"
-        android:title="Настройки"
+        android:title="Сортировать по названию"
         app:showAsAction="never" />
+    <item
+            android:id="@+id/action_SortByImp"
+            android:orderInCategory="100"
+            android:title="Сортировать по важности"
+            app:showAsAction="never" />
 </menu>

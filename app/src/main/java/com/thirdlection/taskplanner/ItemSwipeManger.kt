@@ -11,6 +11,10 @@ import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
 import androidx.recyclerview.widget.RecyclerView
 
+object Const {
+    const val unit = 1000
+}
+
 class ItemSwipeManger(
     context: Context,
     private val listener: SwipeListener,
@@ -42,7 +46,7 @@ class ItemSwipeManger(
     }
 
     override fun onChildViewAttachedToWindow(view: View) {
-        TODO("Not yet implemented")
+        view.context
     }
 
     override fun onChildViewDetachedFromWindow(view: View) {
@@ -69,7 +73,6 @@ class ItemSwipeManger(
                 if (dragged) {
                     swipedChild = rv.findChildViewUnder(event.x, event.y)
                 }
-
                 return dragged
             }
         }
@@ -79,13 +82,14 @@ class ItemSwipeManger(
     override fun onTouchEvent(rv: RecyclerView, event: MotionEvent) {
         val swipedChild = swipedChild ?: return
         val velocityTracker = velocityTracker ?: return
+        val unit = Const.unit
 
         velocityTracker.addMovement(event)
         when (event.actionMasked) {
             MotionEvent.ACTION_MOVE -> swipedChild.translationX = event.x - initialTouchX
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 val swipeViewHolder = rv.findContainingViewHolder(swipedChild) ?: return
-                velocityTracker.computeCurrentVelocity(1000)
+                velocityTracker.computeCurrentVelocity(unit)
                 val velocity = velocityTracker.xVelocity
                 if (velocity > 0) {
                     animateWithFling(swipeViewHolder, velocity)
@@ -98,7 +102,7 @@ class ItemSwipeManger(
     }
 
     override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
-        TODO("Not yet implemented")
+        if (disallowIntercept) null
     }
 
     private fun animateWithFling(viewHolder: RecyclerView.ViewHolder, velocity: Float) {
