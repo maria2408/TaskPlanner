@@ -140,16 +140,6 @@ class FirstFragment :
         }
     }
 
-    private fun getDatesOfNextMonth(): List<Date> {
-        currentMonth++ // + because we want next month
-        if (currentMonth == 12) {
-            // we will switch to january of next year, when we reach last month of year
-            calendar.set(Calendar.YEAR, calendar[Calendar.YEAR] + 1)
-            currentMonth = 0 // 0 == january
-        }
-        return getDates(mutableListOf())
-    }
-
     private fun getFutureDatesOfCurrentMonth(): List<Date> {
         // get all next dates of current month
         currentMonth = calendar[Calendar.MONTH]
