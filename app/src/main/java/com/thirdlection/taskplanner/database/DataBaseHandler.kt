@@ -130,6 +130,6 @@ class DataBaseHandler(context: Context?) :
 
     fun sortByName(){
         val db = this.writableDatabase
-        db.rawQuery("SELECT * FROM " + Constants.TableName + " ORDER BY " + Constants.ColName, null).close()
+        db.rawQuery("SELECT * FROM " + Constants.TableName + " ORDER BY " + Constants.ColName + " ASC", null).close()
     }
 }
