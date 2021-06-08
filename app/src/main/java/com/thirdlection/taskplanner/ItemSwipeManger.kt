@@ -11,6 +11,10 @@ import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
 import androidx.recyclerview.widget.RecyclerView
 
+object const {
+    val unit = 1000
+}
+
 class ItemSwipeManger(
     context: Context,
     private val listener: SwipeListener,
@@ -79,7 +83,7 @@ class ItemSwipeManger(
     override fun onTouchEvent(rv: RecyclerView, event: MotionEvent) {
         val swipedChild = swipedChild ?: return
         val velocityTracker = velocityTracker ?: return
-        val unit = 1000
+        val unit = const.unit
 
         velocityTracker.addMovement(event)
         when (event.actionMasked) {
