@@ -80,38 +80,23 @@ class ItemSwipeManger(
     }
 
     override fun onTouchEvent(rv: RecyclerView, event: MotionEvent) {
-        val swipedChild = swipedChild
-        if (swipedChild != null) return
-        val velocityTracker = velocityTracker
-        if (velocityTracker != null) return
+        val swipedChild = swipedChild ?: return
+        val velocityTracker = velocityTracker ?: return
         val unit = Const.unit
 
-        if (velocityTracker != null) {
-            velocityTracker.addMovement(event)
-        }
+        velocityTracker.addMovement(event)
         when (event.actionMasked) {
-            MotionEvent.ACTION_MOVE -> swipedChild?.translationX = event.x - initialTouchX
+            MotionEvent.ACTION_MOVE -> swipedChild.translationX = event.x - initialTouchX
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                val swipeViewHolder = swipedChild?.let { rv.findContainingViewHolder(it) }
-                if (swipeViewHolder != null) return
-                if (velocityTracker != null) {
-                    velocityTracker.computeCurrentVelocity(unit)
+                val swipeViewHolder = rv.findContainingViewHolder(swipedChild) ?: return
+                velocityTracker.computeCurrentVelocity(unit)
+                val velocity = velocityTracker.xVelocity
+                if (velocity > 0) {
+                    animateWithFling(swipeViewHolder, velocity)
+                } else {
+                    animateWithSpring(swipeViewHolder, velocity)
                 }
-                val velocity = velocityTracker?.xVelocity
-                if (velocity != null) {
-                    if (velocity > 0) {
-                        if (swipeViewHolder != null) {
-                            animateWithFling(swipeViewHolder, velocity)
-                        }
-                    } else {
-                        if (swipeViewHolder != null) {
-                            animateWithSpring(swipeViewHolder, velocity)
-                        }
-                    }
-                }
-                if (velocityTracker != null) {
-                    velocityTracker.clear()
-                }
+                velocityTracker.clear()
             }
         }
     }
